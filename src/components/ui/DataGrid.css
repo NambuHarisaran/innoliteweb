@@ -1,0 +1,44 @@
+.data-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 6px;
+  padding: 1rem;
+  opacity: 0.8;
+  pointer-events: none;
+  /* Mobile-first: grid is strong at the bottom (behind the visual) and fades
+     to ~0 toward the top, where the headline sits — keeps text readable. */
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 20%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to top, #000 0%, #000 20%, rgba(0, 0, 0, 0) 60%);
+}
+
+@media (min-width: 768px) {
+  .data-grid {
+    /* Desktop: strong on the right (behind the orbit), fading to ~0 by the
+       middle/left where the copy lives. */
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 38%, #000 82%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 38%, #000 82%);
+  }
+}
+
+.data-grid-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  will-change: opacity;
+}
+
+@keyframes cell-pulse {
+  0% {
+    opacity: var(--cell-min);
+  }
+  100% {
+    opacity: var(--cell-max);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-grid-cell {
+    animation: none !important;
+  }
+}

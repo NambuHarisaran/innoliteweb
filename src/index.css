@@ -50,12 +50,77 @@ body {
   }
 }
 
+/* --- Hero vertical image gallery --- */
+.hero-gallery {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.gallery-track-up {
+  animation: gallery-up 26s linear infinite;
+}
+.gallery-track-down {
+  animation: gallery-down 30s linear infinite;
+}
+.hero-gallery:hover .gallery-track-up,
+.hero-gallery:hover .gallery-track-down {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes gallery-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Varied tile shapes */
+.gshape-arch {
+  border-radius: 999px 999px 24px 24px;
+}
+.gshape-circle {
+  border-radius: 9999px;
+}
+.gshape-rounded {
+  border-radius: 30px;
+}
+.gshape-blob {
+  border-radius: 60% 40% 47% 53% / 62% 44% 56% 38%;
+}
+.gshape-leaf {
+  border-radius: 12px 56px 12px 56px;
+}
+
 /* Respect reduced-motion globally */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .marquee-track {
+  .marquee-track,
+  .gallery-track-up,
+  .gallery-track-down {
     animation: none;
   }
 }

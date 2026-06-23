@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Bot, Zap, Rocket } from 'lucide-react';
+import DataGrid from '../ui/DataGrid.jsx';
 import HeroVisual from './HeroVisual.jsx';
 
 const pills = [
@@ -28,27 +29,13 @@ export default function Hero() {
       id="home"
       className="relative overflow-hidden bg-white pt-32 pb-20 sm:pt-36 lg:pb-28"
     >
-      {/* Circuit pattern — top right */}
-      <svg
-        className="pointer-events-none absolute right-0 top-0 h-80 w-80 text-navy opacity-[0.05]"
-        viewBox="0 0 200 200"
-        fill="none"
-        aria-hidden="true"
-      >
-        <g stroke="currentColor" strokeWidth="1.5">
-          <path d="M20 40h60v40h50M40 20v50h40M120 30v60h50M150 90v50M30 120h70v50" />
-          <circle cx="80" cy="80" r="4" fill="currentColor" />
-          <circle cx="130" cy="80" r="4" fill="currentColor" />
-          <circle cx="170" cy="90" r="4" fill="currentColor" />
-          <circle cx="100" cy="120" r="4" fill="currentColor" />
-          <circle cx="40" cy="70" r="4" fill="currentColor" />
-        </g>
-      </svg>
+      {/* Animated white + orange data-grid background */}
+      <DataGrid />
 
-      {/* Orange glow blob — bottom left */}
+      {/* Soft orange glow blob — bottom left, adds warmth under the grid */}
       <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-orange/10 blur-[80px]" />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[60%_40%] lg:px-8">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[55%_45%] lg:px-8">
         {/* Left column */}
         <div>
           <motion.span

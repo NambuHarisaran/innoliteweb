@@ -33,6 +33,7 @@ export default {
         'slide-up': 'slideUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.8s ease-out forwards',
         marquee: 'marquee 30s linear infinite',
+        orbit: 'orbit calc(var(--duration) * 1s) linear infinite',
       },
       keyframes: {
         float: {
@@ -50,6 +51,16 @@ export default {
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
+        },
+        orbit: {
+          '0%': {
+            transform:
+              'rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)',
+          },
+          '100%': {
+            transform:
+              'rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)',
+          },
         },
       },
     },
