@@ -1,0 +1,22 @@
+<svg width="260" height="64" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InnoLite Technologies">
+  <!-- Lettermark "Li" -->
+  <rect x="2" y="8" width="48" height="48" rx="12" fill="#FFFFFF"/>
+  <!-- L -->
+  <path d="M16 20 V44 H30" stroke="#1A2B4A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- i stem -->
+  <rect x="34" y="28" width="5" height="16" rx="2.5" fill="#F47920"/>
+  <!-- i dot -->
+  <circle cx="36.5" cy="22" r="3.2" fill="#F47920"/>
+
+  <!-- Wordmark -->
+  <text x="64" y="34" font-family="Poppins, sans-serif" font-size="26" font-weight="800" letter-spacing="-0.5">
+    <tspan fill="#FFFFFF">Inno</tspan><tspan fill="#F47920">L</tspan><tspan fill="#FFFFFF">ite</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <g>
+    <line x1="64" y1="48" x2="74" y2="48" stroke="#F47920" stroke-width="1.5"/>
+    <text x="79" y="51" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="600" letter-spacing="3" fill="#FFFFFF">TECHNOLOGIES</text>
+    <line x1="196" y1="48" x2="206" y2="48" stroke="#F47920" stroke-width="1.5"/>
+  </g>
+</svg>
