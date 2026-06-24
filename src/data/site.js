@@ -46,7 +46,7 @@ export const courses = [
     icon: 'Coffee',
     title: 'Java Development',
     description:
-      'Master OOP, backend logic, and Spring Boot to build production-grade enterprise applications.',
+      'Master Java programming, Object-Oriented Programming (OOP), data structures, and backend application development to build real-world software solutions.',
     duration: '6 Weeks',
     tag: null,
   },
