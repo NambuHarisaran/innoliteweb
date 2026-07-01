@@ -1,9 +1,14 @@
+import { Link } from 'react-router-dom';
 import { Linkedin, Instagram, Youtube, Phone, Mail, MapPin } from 'lucide-react';
 import { navLinks, courses } from '../../data/site.js';
 
 const socials = [
   { icon: Linkedin, label: 'LinkedIn', href: '#' },
-  { icon: Instagram, label: 'Instagram', href: '#' },
+  {
+    icon: Instagram,
+    label: 'Instagram',
+    href: 'https://www.instagram.com/innolite_technologies',
+  },
   { icon: Youtube, label: 'YouTube', href: '#' },
 ];
 
@@ -28,6 +33,8 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-orange"
                 >
@@ -43,9 +50,9 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className={linkClass}>
+                  <Link to={link.href} className={linkClass}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -57,9 +64,9 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5">
               {courses.map((course) => (
                 <li key={course.title}>
-                  <a href="#courses" className={linkClass}>
+                  <Link to="/courses" className={linkClass}>
                     {course.title.replace(/\s*\(.*\)/, '')}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

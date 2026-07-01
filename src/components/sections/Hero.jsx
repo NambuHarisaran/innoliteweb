@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Bot, Zap, Rocket } from 'lucide-react';
 import DataGrid from '../ui/DataGrid.jsx';
 import HeroVisual from './HeroVisual.jsx';
+
+const MotionLink = motion(Link);
 
 const pills = [
   { icon: Bot, label: 'Learn.' },
@@ -113,23 +116,23 @@ export default function Hero() {
             transition={{ delay: 0.9 }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            <motion.a
-              href="#courses"
+            <MotionLink
+              to="/courses"
               whileHover={reduce ? undefined : { scale: 1.03, y: -2 }}
               whileTap={reduce ? undefined : { scale: 0.97 }}
               className="inline-flex items-center gap-2 rounded-pill bg-orange px-6 py-3 font-display font-semibold text-white shadow-sm transition-colors hover:bg-orange-dark"
             >
               Explore Courses
               <ArrowRight className="h-4 w-4" />
-            </motion.a>
-            <motion.a
-              href="#contact"
+            </MotionLink>
+            <MotionLink
+              to="/contact"
               whileHover={reduce ? undefined : { scale: 1.03, y: -2 }}
               whileTap={reduce ? undefined : { scale: 0.97 }}
               className="inline-flex items-center gap-2 rounded-pill border-2 border-orange bg-white px-6 py-3 font-display font-semibold text-orange transition-colors hover:bg-orange hover:text-white"
             >
               Talk to Us
-            </motion.a>
+            </MotionLink>
           </motion.div>
         </div>
 

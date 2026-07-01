@@ -1,11 +1,12 @@
 // Centralized site content for InnoLite Technologies
 
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Courses', href: '#courses' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Courses', href: '/courses' },
+  { label: 'Why Us', href: '/why-us' },
+  { label: 'Team', href: '/team' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const images = {
@@ -217,6 +218,16 @@ export const stats = [
   { end: 10, suffix: '', label: 'Courses' },
   { end: 100, suffix: '%', label: 'Project-Based Learning' },
   { end: 5, suffix: '★', label: 'Average Rating' },
+];
+
+// Team members — placeholder entries; real photos/bios to be swapped in later.
+export const team = [
+  { name: 'Team Member', role: 'Founder & CEO' },
+  { name: 'Team Member', role: 'Head of Training' },
+  { name: 'Team Member', role: 'Lead Mentor — AI & Robotics' },
+  { name: 'Team Member', role: 'Lead Mentor — Web & Mobile' },
+  { name: 'Team Member', role: 'Operations Manager' },
+  { name: 'Team Member', role: 'Career Services Lead' },
 ];
 
 // Technologies marquee (devicon CDN names + display label)

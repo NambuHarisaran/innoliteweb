@@ -1,29 +1,28 @@
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar.jsx';
 import Footer from './components/layout/Footer.jsx';
-import Hero from './components/sections/Hero.jsx';
-import LogoTicker from './components/sections/LogoTicker.jsx';
-import About from './components/sections/About.jsx';
-import Courses from './components/sections/Courses.jsx';
-import Stats from './components/sections/Stats.jsx';
-import WhyChooseUs from './components/sections/WhyChooseUs.jsx';
-import HowItWorks from './components/sections/HowItWorks.jsx';
-import Testimonials from './components/sections/Testimonials.jsx';
-import Contact from './components/sections/Contact.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Courses from './pages/Courses.jsx';
+import WhyUs from './pages/WhyUs.jsx';
+import Team from './pages/Team.jsx';
+import Contact from './pages/Contact.jsx';
 
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Hero />
-        <LogoTicker />
-        <About />
-        <Courses />
-        <Stats />
-        <WhyChooseUs />
-        <HowItWorks />
-        <Testimonials />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/why-us" element={<WhyUs />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
       <Footer />
     </>

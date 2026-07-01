@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import SectionHeader from '../ui/SectionHeader.jsx';
 import Icon from '../ui/Icon.jsx';
@@ -49,12 +50,12 @@ function StackCard({ i, total, course, progress, reduce }) {
             <span className="rounded-pill bg-navy/10 px-4 py-1.5 font-accent text-xs uppercase tracking-wide text-navy">
               {course.duration}
             </span>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="font-body text-sm font-semibold text-orange transition-colors hover:text-orange-dark hover:underline"
             >
               Enroll →
-            </a>
+            </Link>
           </div>
         </div>
       </motion.article>

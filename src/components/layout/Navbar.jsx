@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { navLinks } from '../../data/site.js';
@@ -6,7 +7,6 @@ import { navLinks } from '../../data/site.js';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('#home');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,10 +23,10 @@ export default function Navbar() {
     };
   }, [open]);
 
-  const handleNav = (href) => {
-    setActive(href);
-    setOpen(false);
-  };
+  const navLinkClass = ({ isActive }) =>
+    `font-body text-sm font-medium transition-colors duration-200 hover:text-orange ${
+      isActive ? 'text-orange' : 'text-navy'
+    }`;
 
   return (
     <header
@@ -38,42 +38,29 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a href="#home" onClick={() => handleNav('#home')} className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src="/logo.svg" alt="InnoLite Technologies" className="h-10 w-auto" />
-        </a>
+        </Link>
 
         {/* Desktop nav links */}
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href} className="relative">
-              <a
-                href={link.href}
-                onClick={() => handleNav(link.href)}
-                className={`font-body text-sm font-medium transition-colors duration-200 hover:text-orange ${
-                  active === link.href ? 'text-orange' : 'text-navy'
-                }`}
-              >
+              <NavLink to={link.href} end={link.href === '/'} className={navLinkClass}>
                 {link.label}
-              </a>
-              {active === link.href && (
-                <motion.span
-                  layoutId="nav-dot"
-                  className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-orange"
-                />
-              )}
+              </NavLink>
             </li>
           ))}
         </ul>
 
         {/* Desktop CTA */}
-        <a
-          href="#contact"
-          onClick={() => handleNav('#contact')}
+        <Link
+          to="/contact"
           className="hidden items-center gap-2 rounded-pill bg-orange px-6 py-2.5 font-display text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-orange-dark md:inline-flex"
         >
           Enroll Now
           <ArrowRight className="h-4 w-4" />
-        </a>
+        </Link>
 
         {/* Mobile hamburger */}
         <button
@@ -115,26 +102,27 @@ export default function Navbar() {
                   transition={{ delay: 0.1 + i * 0.06 }}
                   className="border-l-4 border-orange/70 pl-4"
                 >
-                  <a
-                    href={link.href}
-                    onClick={() => handleNav(link.href)}
+                  <NavLink
+                    to={link.href}
+                    end={link.href === '/'}
+                    onClick={() => setOpen(false)}
                     className="block py-3 font-display text-2xl font-semibold text-navy"
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 </motion.li>
               ))}
             </ul>
 
             <div className="p-6">
-              <a
-                href="#contact"
-                onClick={() => handleNav('#contact')}
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
                 className="flex w-full items-center justify-center gap-2 rounded-pill bg-orange px-6 py-4 font-display font-semibold text-white"
               >
                 Enroll Now
                 <ArrowRight className="h-5 w-5" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
