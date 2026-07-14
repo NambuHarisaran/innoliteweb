@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Loader2 } from 'lucide-r
 import { contactInfo, courses } from '../../data/site.js';
 
 // ─── Web3Forms Configuration ────────────────────────────────────────────────────
-const WEB3FORMS_ACCESS_KEY = 'a443894e-dadf-4ce2-aa5e-8c051371d150';
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 // ────────────────────────────────────────────────────────────────────────────────
 
 const iconMap = { Phone, Mail, MapPin };
