@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Instagram, Youtube, Phone, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 import { navLinks, courses } from '../../data/site.js';
 
 const socials = [
-  { icon: Linkedin, label: 'LinkedIn', href: '#' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/nexus-innolite-b96372422?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
   {
     icon: Instagram,
     label: 'Instagram',
     href: 'https://www.instagram.com/innolite_technologies',
   },
-  { icon: Youtube, label: 'YouTube', href: '#' },
 ];
 
 const columnHeader =
@@ -24,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Col 1 — logo + about */}
           <div>
-            <img src="/logo-dark.svg" alt="InnoLite Technologies" className="h-10 w-auto" />
+            <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto rounded-lg bg-white/90 p-1" />
             <p className="mt-4 max-w-[220px] font-body text-sm text-white/50">
               Innovating Intelligence. Delivering Excellence.
             </p>

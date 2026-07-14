@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 import { contactInfo, courses } from '../../data/site.js';
+
+// ─── Web3Forms Configuration ────────────────────────────────────────────────────
+// Set VITE_WEB3FORMS_KEY in your .env file
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+// ────────────────────────────────────────────────────────────────────────────────
 
 const iconMap = { Phone, Mail, MapPin };
 
@@ -12,6 +17,8 @@ const labelClass =
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState('');
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -24,6 +31,7 @@ export default function Contact() {
   const update = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
+    setSendError('');
   };
 
   const validate = () => {
@@ -35,15 +43,47 @@ export default function Contact() {
     return next;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const next = validate();
     if (Object.keys(next).length > 0) {
       setErrors(next);
       return;
     }
-    // No backend wired — surface the success state per spec.
-    setSubmitted(true);
+
+    setSending(true);
+    setSendError('');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          course: form.course,
+          message: form.message || 'No additional message.',
+          subject: `New Enquiry from ${form.name} — ${form.course}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        throw new Error(data.message || 'Form submission failed.');
+      }
+    } catch (err) {
+      console.error('Web3Forms error:', err);
+      setSendError(
+        'Something went wrong while sending your message. Please try again or contact us directly.',
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -129,6 +169,7 @@ export default function Contact() {
                   onChange={update('name')}
                   placeholder="Your name"
                   className={inputClass}
+                  disabled={sending}
                 />
                 {errors.name && (
                   <p className="mt-1 text-xs text-red-500">{errors.name}</p>
@@ -146,6 +187,7 @@ export default function Contact() {
                   onChange={update('email')}
                   placeholder="you@example.com"
                   className={inputClass}
+                  disabled={sending}
                 />
                 {errors.email && (
                   <p className="mt-1 text-xs text-red-500">{errors.email}</p>
@@ -163,6 +205,7 @@ export default function Contact() {
                   onChange={update('phone')}
                   placeholder="+91 ..."
                   className={inputClass}
+                  disabled={sending}
                 />
                 {errors.phone && (
                   <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
@@ -178,6 +221,7 @@ export default function Contact() {
                   value={form.course}
                   onChange={update('course')}
                   className={`${inputClass} ${form.course ? '' : 'text-gray-400'}`}
+                  disabled={sending}
                 >
                   <option value="">Select a course</option>
                   {courses.map((course) => (
@@ -202,17 +246,34 @@ export default function Contact() {
                   onChange={update('message')}
                   placeholder="Tell us what you're looking for..."
                   className={`${inputClass} resize-none`}
+                  disabled={sending}
                 />
               </div>
 
+              {sendError && (
+                <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600">
+                  {sendError}
+                </p>
+              )}
+
               <motion.button
                 type="submit"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange py-3.5 font-display text-base font-semibold text-white shadow-sm transition-colors hover:bg-orange-dark hover:shadow-lg hover:shadow-orange/30"
+                disabled={sending}
+                whileHover={sending ? undefined : { y: -2 }}
+                whileTap={sending ? undefined : { scale: 0.98 }}
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange py-3.5 font-display text-base font-semibold text-white shadow-sm transition-colors hover:bg-orange-dark hover:shadow-lg hover:shadow-orange/30 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Send Message
-                <ArrowRight className="h-4 w-4" />
+                {sending ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
               </motion.button>
             </form>
           )}
@@ -221,3 +282,4 @@ export default function Contact() {
     </section>
   );
 }
+

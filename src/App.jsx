@@ -6,7 +6,6 @@ import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Courses from './pages/Courses.jsx';
 import WhyUs from './pages/WhyUs.jsx';
-import Team from './pages/Team.jsx';
 import Contact from './pages/Contact.jsx';
 
 export default function App() {
@@ -20,7 +19,6 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/why-us" element={<WhyUs />} />
-          <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

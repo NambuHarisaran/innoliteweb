@@ -39,7 +39,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src="/logo.svg" alt="InnoLite Technologies" className="h-10 w-auto" />
+          <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop nav links */}
@@ -83,7 +83,7 @@ export default function Navbar() {
             className="fixed inset-0 z-50 flex flex-col bg-white md:hidden"
           >
             <div className="flex h-20 items-center justify-between px-4">
-              <img src="/logo.svg" alt="InnoLite Technologies" className="h-10 w-auto" />
+              <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto" />
               <button
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}

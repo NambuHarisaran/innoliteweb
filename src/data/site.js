@@ -5,7 +5,6 @@ export const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Courses', href: '/courses' },
   { label: 'Why Us', href: '/why-us' },
-  { label: 'Team', href: '/team' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -13,7 +12,7 @@ export const images = {
   hero_ai:
     'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=400&q=80',
   hero_drone:
-    'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=300&q=80',
+    '/Drone-AutomationProgramming.webp',
   hero_circuit:
     'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&q=80',
   about_students:
@@ -21,7 +20,7 @@ export const images = {
   why_lab:
     'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&q=80',
   why_coding:
-    'https://images.unsplash.com/photo-1516321165247-4aa89a48be55?w=400&q=80',
+    '/Assembly-Repair-and-Testing-of-Drone-Drone-Building.webp',
   why_electronics:
     'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
 };
@@ -195,7 +194,7 @@ export const contactInfo = [
   {
     icon: 'Phone',
     label: 'Call Us',
-    values: ['+91 98949 98101', '+91 70109 21658', '+91 98421 81701'],
+    values: ['+91 98421 81701'],
   },
   {
     icon: 'Mail',
@@ -220,15 +219,7 @@ export const stats = [
   { end: 5, suffix: '★', label: 'Average Rating' },
 ];
 
-// Team members — placeholder entries; real photos/bios to be swapped in later.
-export const team = [
-  { name: 'Team Member', role: 'Founder & CEO' },
-  { name: 'Team Member', role: 'Head of Training' },
-  { name: 'Team Member', role: 'Lead Mentor — AI & Robotics' },
-  { name: 'Team Member', role: 'Lead Mentor — Web & Mobile' },
-  { name: 'Team Member', role: 'Operations Manager' },
-  { name: 'Team Member', role: 'Career Services Lead' },
-];
+
 
 // Technologies marquee (devicon CDN names + display label)
 export const technologies = [
