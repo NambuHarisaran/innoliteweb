@@ -104,7 +104,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-center sm:flex-row sm:px-6 lg:px-8">
           <p className="font-body text-[13px] text-white/40">
-            © 2026 InnoLite Technologies. All rights reserved.
+            © 2026 Nexus Innolite Technologies Private Limited. All rights reserved.
           </p>
           <p className="font-body text-[13px] text-white/40">
             Made with <span className="text-orange">❤</span> in Madurai
