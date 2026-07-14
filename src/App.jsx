@@ -8,9 +8,12 @@ import Courses from './pages/Courses.jsx';
 import WhyUs from './pages/WhyUs.jsx';
 import Contact from './pages/Contact.jsx';
 
+import SEOHead from './components/SEOHead.jsx';
+
 export default function App() {
   return (
     <>
+      <SEOHead />
       <ScrollToTop />
       <Navbar />
       <main>

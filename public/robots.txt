@@ -1,0 +1,5 @@
+# https://www.innolitetech.com robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.innolitetech.com/sitemap.xml
