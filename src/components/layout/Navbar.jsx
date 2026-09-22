@@ -38,7 +38,11 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5">
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center gap-2.5"
+        >
           <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto" />
           <span className="font-display text-base font-bold leading-tight text-navy">Nexus Innolite<br />Technologies</span>
         </Link>
@@ -47,7 +51,16 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href} className="relative">
-              <NavLink to={link.href} end={link.href === '/'} className={navLinkClass}>
+              <NavLink
+                to={link.href}
+                end={link.href === '/'}
+                onClick={() => {
+                  if (link.href === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                className={navLinkClass}
+              >
                 {link.label}
               </NavLink>
             </li>
@@ -84,10 +97,17 @@ export default function Navbar() {
             className="fixed inset-0 z-50 flex flex-col bg-white md:hidden"
           >
             <div className="flex h-20 items-center justify-between px-4">
-              <div className="flex items-center gap-2.5">
+              <Link
+                to="/"
+                onClick={() => {
+                  setOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2.5"
+              >
                 <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto" />
                 <span className="font-display text-base font-bold leading-tight text-navy">Nexus Innolite<br />Technologies</span>
-              </div>
+              </Link>
               <button
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
@@ -109,7 +129,12 @@ export default function Navbar() {
                   <NavLink
                     to={link.href}
                     end={link.href === '/'}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      if (link.href === '/') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
                     className="block py-3 font-display text-2xl font-semibold text-navy"
                   >
                     {link.label}

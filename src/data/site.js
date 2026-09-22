@@ -27,6 +27,9 @@ export const images = {
 
 export const courses = [
   {
+    id: 'ai',
+    slug: 'ai',
+    shortName: 'AI',
     icon: 'Brain',
     title: 'Artificial Intelligence (AI)',
     description:
@@ -35,6 +38,9 @@ export const courses = [
     tag: 'Most Popular',
   },
   {
+    id: 'robotics',
+    slug: 'robotics',
+    shortName: 'Robotics',
     icon: 'Cpu',
     title: 'Robotics',
     description:
@@ -43,6 +49,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'java',
+    slug: 'java',
+    shortName: 'Java',
     icon: 'Coffee',
     title: 'Java Development',
     description:
@@ -51,6 +60,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'python',
+    slug: 'python',
+    shortName: 'Python',
     icon: 'Code2',
     title: 'Python Development',
     description:
@@ -59,6 +71,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'web-development',
+    slug: 'web-development',
+    shortName: 'Web Dev',
     icon: 'Globe',
     title: 'Website Development',
     description:
@@ -67,6 +82,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'mobile-app',
+    slug: 'mobile-app',
+    shortName: 'Mobile App',
     icon: 'Smartphone',
     title: 'Mobile App Development',
     description:
@@ -75,6 +93,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'data-analytics',
+    slug: 'data-analytics',
+    shortName: 'Power BI / Data',
     icon: 'BarChart3',
     title: 'Data Analytics & Power BI',
     description:
@@ -83,6 +104,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'ui-ux',
+    slug: 'ui-ux',
+    shortName: 'UI/UX Design',
     icon: 'Layers',
     title: 'UI/UX Design',
     description:
@@ -91,6 +115,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'pcb-design',
+    slug: 'pcb-design',
+    shortName: 'PCB & Embedded',
     icon: 'CircuitBoard',
     title: 'PCB Designing & Embedded Systems',
     description:
@@ -99,6 +126,9 @@ export const courses = [
     tag: null,
   },
   {
+    id: 'drone',
+    slug: 'drone',
+    shortName: 'Drone Tech',
     icon: 'Plane',
     title: 'Drone Technology',
     description:

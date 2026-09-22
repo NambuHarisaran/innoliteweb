@@ -3,7 +3,7 @@ import { Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 import { navLinks, courses } from '../../data/site.js';
 
 const socials = [
-  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/nexus-innolite-b96372422?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/nexus-innolite-b96372422' },
   {
     icon: Instagram,
     label: 'Instagram',
@@ -23,7 +23,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Col 1 — logo + about */}
           <div>
-            <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto rounded-lg bg-white/90 p-1" />
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="inline-block transition-opacity hover:opacity-90"
+              aria-label="InnoLite Technologies Home"
+            >
+              <img src="/1.png" alt="InnoLite Technologies" className="h-10 w-auto rounded-lg bg-white/90 p-1" />
+            </Link>
             <p className="mt-4 max-w-[220px] font-body text-sm text-white/50">
               Innovating Intelligence. Delivering Excellence.
             </p>
@@ -49,7 +56,15 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className={linkClass}>
+                  <Link
+                    to={link.href}
+                    onClick={() => {
+                      if (link.href === '/') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className={linkClass}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -63,7 +78,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-2.5">
               {courses.map((course) => (
                 <li key={course.title}>
-                  <Link to="/courses" className={linkClass}>
+                  <Link to={`/courses#${course.id}`} className={linkClass}>
                     {course.title.replace(/\s*\(.*\)/, '')}
                   </Link>
                 </li>
@@ -77,7 +92,12 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-white/50" />
-                <span className="font-body text-sm text-white/60">+91 98421 81701</span>
+                <a
+                  href="tel:+919842181701"
+                  className="font-body text-sm text-white/60 transition-colors hover:text-white"
+                >
+                  +91 98421 81701
+                </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white/50" />
@@ -90,10 +110,15 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/50" />
-                <span className="font-body text-sm text-white/60">
+                <a
+                  href="https://maps.google.com/?q=Anna+Nagar,+Madurai,+Tamil+Nadu+625020"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-sm text-white/60 transition-colors hover:text-white"
+                >
                   653, 14th East Cross Street, Anna Nagar, Madurai – 625020, Tamil Nadu,
                   India
-                </span>
+                </a>
               </li>
             </ul>
           </div>

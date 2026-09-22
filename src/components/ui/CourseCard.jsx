@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Icon from './Icon.jsx';
@@ -39,13 +40,13 @@ export default function CourseCard({ course, index = 0 }) {
         <span className="rounded-pill bg-navy/10 px-3 py-1 font-accent text-[11px] uppercase tracking-wide text-navy">
           {course.duration}
         </span>
-        <a
-          href="#contact"
+        <Link
+          to={`/contact?course=${encodeURIComponent(course.title)}`}
           className="inline-flex items-center gap-1 font-body text-[13px] font-semibold text-orange transition-colors hover:text-orange-dark hover:underline"
         >
-          Learn More
+          Enroll Now
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </a>
+        </Link>
       </div>
     </motion.article>
   );

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Loader2, ExternalLink } from 'lucide-react';
 import { contactInfo, courses } from '../../data/site.js';
 
 // ─── Web3Forms Configuration ────────────────────────────────────────────────────
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_KEY || 'a443894e-dadf-4ce2-aa5e-8c051371d150';
 // ────────────────────────────────────────────────────────────────────────────────
 
 const iconMap = { Phone, Mail, MapPin };
@@ -15,6 +17,7 @@ const labelClass =
   'mb-1.5 block font-accent text-xs uppercase tracking-wider text-gray-500';
 
 export default function Contact() {
+  const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
@@ -26,6 +29,25 @@ export default function Contact() {
     message: '',
   });
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const courseParam = params.get('course');
+    if (courseParam) {
+      const matched = courses.find(
+        (c) =>
+          c.title.toLowerCase() === courseParam.toLowerCase() ||
+          c.id === courseParam.toLowerCase() ||
+          c.slug === courseParam.toLowerCase() ||
+          (c.shortName && c.shortName.toLowerCase() === courseParam.toLowerCase())
+      );
+      if (matched) {
+        setForm((prev) => ({ ...prev, course: matched.title }));
+      } else {
+        setForm((prev) => ({ ...prev, course: courseParam }));
+      }
+    }
+  }, [location.search]);
 
   const update = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -117,24 +139,61 @@ export default function Contact() {
                     <p className="font-display text-sm font-semibold text-navy">
                       {item.label}
                     </p>
-                    {item.values.map((value) => (
-                      <p key={value} className="font-body text-sm text-gray-600">
-                        {value}
-                      </p>
-                    ))}
+                    {item.values.map((value) => {
+                      if (item.icon === 'Phone') {
+                        return (
+                          <a
+                            key={value}
+                            href={`tel:${value.replace(/\s+/g, '')}`}
+                            className="block font-body text-sm text-gray-600 transition-colors hover:text-orange"
+                          >
+                            {value}
+                          </a>
+                        );
+                      }
+                      if (item.icon === 'Mail') {
+                        return (
+                          <a
+                            key={value}
+                            href={`mailto:${value}`}
+                            className="block font-body text-sm text-gray-600 transition-colors hover:text-orange"
+                          >
+                            {value}
+                          </a>
+                        );
+                      }
+                      return (
+                        <p key={value} className="font-body text-sm text-gray-600">
+                          {value}
+                        </p>
+                      );
+                    })}
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <iframe
-            title="InnoLite Technologies — Anna Nagar, Madurai"
-            src="https://www.google.com/maps?q=Anna+Nagar,+Madurai,+Tamil+Nadu+625020&output=embed"
-            className="mt-6 h-[200px] w-full rounded-xl border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+          <div className="mt-6">
+            <iframe
+              title="InnoLite Technologies — Anna Nagar, Madurai"
+              src="https://www.google.com/maps?q=Anna+Nagar,+Madurai,+Tamil+Nadu+625020&output=embed"
+              className="h-[200px] w-full rounded-xl border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div className="mt-2 text-right">
+              <a
+                href="https://maps.google.com/?q=Anna+Nagar,+Madurai,+Tamil+Nadu+625020"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-body text-xs font-semibold text-orange hover:underline"
+              >
+                Open in Google Maps
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          </div>
         </motion.div>
 
         {/* Right — form */}
